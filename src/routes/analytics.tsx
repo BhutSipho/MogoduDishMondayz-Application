@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo } from "react";
 import { format, isSameMonth, subMonths } from "date-fns";
-import { HISTORY, money } from "@/lib/mogodu-data";
+import { HISTORY, group, money } from "@/lib/mogodu-data";
 import { ORDER_STATUSES, useStore } from "@/lib/store";
 
 export const Route = createFileRoute("/analytics")({
@@ -78,7 +78,7 @@ function AnalyticsPage() {
         <div className="flex flex-wrap gap-x-10 gap-y-4">
           <div>
             <div className="font-mono text-xs text-muted-foreground">ORDERS</div>
-            <div className="font-display text-3xl">{totalOrders.toLocaleString("en-ZA")}</div>
+            <div className="font-display text-3xl">{group(totalOrders)}</div>
           </div>
           <div>
             <div className="font-mono text-xs text-muted-foreground">REVENUE</div>

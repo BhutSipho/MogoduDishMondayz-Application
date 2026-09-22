@@ -107,6 +107,13 @@ export const HISTORY: { monthsAgo: number; orders: number; revenue: number }[] =
 
 export const CURRENCY = "R";
 
+/** Locale-independent grouping so server and client markup always match. */
+export function group(amount: number) {
+  return Math.round(amount)
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 export function money(amount: number) {
-  return `${CURRENCY}${amount.toLocaleString("en-ZA")}`;
+  return `${CURRENCY}${group(amount)}`;
 }
