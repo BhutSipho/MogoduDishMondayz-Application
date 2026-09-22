@@ -204,7 +204,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       setCart({});
       return order;
     },
-    [cartLines, cartTotal, cartCount, pushNote],
+    [orders, cartLines, cartTotal, cartCount, pushNote],
   );
 
   const advanceOrder = useCallback(
