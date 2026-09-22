@@ -186,21 +186,16 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const placeOrder = useCallback(
     (customer: Customer) => {
       const now = new Date().toISOString();
-      let created: Order | null = null;
-      setOrders((prev) => {
-        const order: Order = {
-          ref: nextRef(prev),
-          lines: cartLines,
-          total: cartTotal,
-          customer,
-          placedAt: now,
-          statusIndex: 0,
-          history: [{ status: "Order Received", at: now }],
-        };
-        created = order;
-        return [order, ...prev];
-      });
-      const order = created as unknown as Order;
+      const order: Order = {
+        ref: nextRef(orders),
+        lines: cartLines,
+        total: cartTotal,
+        customer,
+        placedAt: now,
+        statusIndex: 0,
+        history: [{ status: "Order Received", at: now }],
+      };
+      setOrders((prev) => [order, ...prev]);
       pushNote({
         kind: "order",
         title: `Order ${order.ref} received`,
