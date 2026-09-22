@@ -11,7 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MenuRouteImport } from './routes/menu'
+import { Route as NotificationsRouteImport } from './routes/notifications'
 import { Route as SpecialsRouteImport } from './routes/specials'
+import { Route as TrackRouteImport } from './routes/track'
+import { Route as OrderIndexRouteImport } from './routes/order.index'
+import { Route as OrderConfirmedRouteImport } from './routes/order.confirmed'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,40 +27,98 @@ const MenuRoute = MenuRouteImport.update({
   path: '/menu',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NotificationsRoute = NotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SpecialsRoute = SpecialsRouteImport.update({
   id: '/specials',
   path: '/specials',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TrackRoute = TrackRouteImport.update({
+  id: '/track',
+  path: '/track',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrderIndexRoute = OrderIndexRouteImport.update({
+  id: '/order/',
+  path: '/order/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrderConfirmedRoute = OrderConfirmedRouteImport.update({
+  id: '/order/confirmed',
+  path: '/order/confirmed',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/menu': typeof MenuRoute
+  '/notifications': typeof NotificationsRoute
   '/specials': typeof SpecialsRoute
+  '/track': typeof TrackRoute
+  '/order/confirmed': typeof OrderConfirmedRoute
+  '/order/': typeof OrderIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/menu': typeof MenuRoute
+  '/notifications': typeof NotificationsRoute
   '/specials': typeof SpecialsRoute
+  '/track': typeof TrackRoute
+  '/order/confirmed': typeof OrderConfirmedRoute
+  '/order': typeof OrderIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/menu': typeof MenuRoute
+  '/notifications': typeof NotificationsRoute
   '/specials': typeof SpecialsRoute
+  '/track': typeof TrackRoute
+  '/order/confirmed': typeof OrderConfirmedRoute
+  '/order/': typeof OrderIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/menu' | '/specials'
+  fullPaths:
+    | '/'
+    | '/menu'
+    | '/notifications'
+    | '/specials'
+    | '/track'
+    | '/order/confirmed'
+    | '/order/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/menu' | '/specials'
-  id: '__root__' | '/' | '/menu' | '/specials'
+  to:
+    | '/'
+    | '/menu'
+    | '/notifications'
+    | '/specials'
+    | '/track'
+    | '/order/confirmed'
+    | '/order'
+  id:
+    | '__root__'
+    | '/'
+    | '/menu'
+    | '/notifications'
+    | '/specials'
+    | '/track'
+    | '/order/confirmed'
+    | '/order/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   MenuRoute: typeof MenuRoute
+  NotificationsRoute: typeof NotificationsRoute
   SpecialsRoute: typeof SpecialsRoute
+  TrackRoute: typeof TrackRoute
+  OrderConfirmedRoute: typeof OrderConfirmedRoute
+  OrderIndexRoute: typeof OrderIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -75,11 +137,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MenuRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/notifications': {
+      id: '/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof NotificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/specials': {
       id: '/specials'
       path: '/specials'
       fullPath: '/specials'
       preLoaderRoute: typeof SpecialsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/track': {
+      id: '/track'
+      path: '/track'
+      fullPath: '/track'
+      preLoaderRoute: typeof TrackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/order/': {
+      id: '/order/'
+      path: '/order'
+      fullPath: '/order/'
+      preLoaderRoute: typeof OrderIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/order/confirmed': {
+      id: '/order/confirmed'
+      path: '/order/confirmed'
+      fullPath: '/order/confirmed'
+      preLoaderRoute: typeof OrderConfirmedRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -88,7 +178,11 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   MenuRoute: MenuRoute,
+  NotificationsRoute: NotificationsRoute,
   SpecialsRoute: SpecialsRoute,
+  TrackRoute: TrackRoute,
+  OrderConfirmedRoute: OrderConfirmedRoute,
+  OrderIndexRoute: OrderIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
