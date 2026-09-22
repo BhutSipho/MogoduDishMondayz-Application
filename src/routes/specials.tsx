@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { toast } from "sonner";
-import { SPECIALS, menuItem, money } from "@/lib/mogodu-data";
+import { FEATURED_SPECIAL, SPECIALS, menuItem, money } from "@/lib/mogodu-data";
 import { useStore } from "@/lib/store";
 
 export const Route = createFileRoute("/specials")({
@@ -24,7 +24,7 @@ export const Route = createFileRoute("/specials")({
 
 function SpecialsPage() {
   const { addOne } = useStore();
-  const featured = SPECIALS[0];
+  const featured = FEATURED_SPECIAL;
   const featuredImage = menuItem(featured.itemId)?.image;
 
   return (

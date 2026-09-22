@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { toast } from "sonner";
 import heroImage from "@/assets/hero-potjie.jpg";
-import { MENU, SPECIALS, money } from "@/lib/mogodu-data";
+import { FEATURED_SPECIAL, MENU, money } from "@/lib/mogodu-data";
 import { useStore } from "@/lib/store";
 import { MenuItemCard } from "@/components/MenuItemCard";
 
@@ -26,7 +26,7 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   const { addOne } = useStore();
-  const special = SPECIALS[0];
+  const special = FEATURED_SPECIAL;
 
   return (
     <>

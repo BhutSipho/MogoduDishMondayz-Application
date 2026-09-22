@@ -86,8 +86,10 @@ export const SPECIALS: Special[] = [
   },
 ];
 
+export const FEATURED_SPECIAL: Special = SPECIALS[0]!;
+
 export function specialForMondayIndex(index: number): Special {
-  return SPECIALS[index % SPECIALS.length];
+  return SPECIALS[index % SPECIALS.length]!;
 }
 
 /**

@@ -168,7 +168,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         id: item.id,
         name: item.name,
         price: item.price,
-        qty: cart[item.id],
+        qty: cart[item.id]!,
       })),
     [cart],
   );
@@ -209,13 +209,13 @@ export function StoreProvider({ children }: { children: ReactNode }) {
 
   const advanceOrder = useCallback(
     (ref: string) => {
-      let message: { title: string; body: string } | null = null;
+      let message: { title: string; body: string } | null = null as { title: string; body: string } | null;
       setOrders((prev) =>
         prev.map((order) => {
           if (order.ref !== ref) return order;
           const nextIndex = Math.min(order.statusIndex + 1, ORDER_STATUSES.length - 1);
           if (nextIndex === order.statusIndex) return order;
-          const status = ORDER_STATUSES[nextIndex];
+          const status = ORDER_STATUSES[nextIndex]!;
           const at = new Date().toISOString();
           message = {
             title: `Order ${order.ref}: ${status}`,
