@@ -90,9 +90,12 @@ function AnalyticsPage() {
           </div>
         </div>
 
-        <div className="mt-8 flex h-40 items-end gap-2 sm:gap-3">
+        <div className="mt-8 flex h-44 items-stretch gap-2 sm:gap-3">
           {months.map((month, index) => (
-            <div key={month.label} className="flex flex-1 flex-col items-center gap-1.5">
+            <div
+              key={month.label}
+              className="flex h-full flex-1 flex-col items-center justify-end gap-1.5"
+            >
               <span className="font-mono text-[10px] text-muted-foreground">
                 {Math.round(month.revenue / 1000)}k
               </span>
